@@ -30,5 +30,9 @@ document.addEventListener("mouseup", () => {
         const { error } = await hDB.from('highlights').insert({ content: text, source_url: window.location.href})
         if (error) console.error(error)
     });
+
+    newBtn.addEventListener("mouseup", (event) => {
+        event.stopPropagation();
+    });
     
 })
