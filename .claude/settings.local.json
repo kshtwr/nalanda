@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(curl -o /Users/keshav/Documents/GitHub/nalanda/supabase.js https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.106.1/dist/umd/supabase.js)"
+      "Bash(curl -o /Users/keshav/Documents/GitHub/nalanda/supabase.js https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.106.1/dist/umd/supabase.js)",
+      "WebSearch"
     ]
   }
 }
