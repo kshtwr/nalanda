@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #F0F0EC;
   --foreground: #171717;
 }
 
@@ -14,8 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #F0F0EC;
+    --foreground: #171717;
   }
 }
 
@@ -39,6 +39,11 @@ body {
 
 /* Style your items */
 .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
-  background: grey;
-  margin-bottom: 30px;
+  background: F0F0EC;
+  border-width: 1px;
+  border-color: dimgray;
+  padding: 10px;
+  margin: 5%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px slategray;
 }
