@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-import Masonry from 'react-masonry-css'
+import HighlightGrid from '../components/HighlightGrid';
+
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
@@ -20,16 +21,10 @@ export default async function Home() {
     console.log('No highlights found.');
     return null;
   }
-
-  const items = data.map(function(item) {
-    return <div key={item.id}>{item.content} {item.source_url}</div>
-  });
-
+  
   return (
     <div>
-      <Masonry  breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
-          {items}
-        </Masonry>
+      <HighlightGrid highlights = {data}/>
     </div>
   );
 }
