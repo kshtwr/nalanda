@@ -14,16 +14,17 @@ export default async function Home() {
 
   if (error) {
     console.error('Error fetching highlights:', error.message);
-    return null;
+    return "Error fetching highlights";
   }
   
   if (!data || data.length === 0) {
     console.log('No highlights found.');
-    return null;
+    return "No highlights found.";
   }
   
   return (
     <div>
+      <div className= "font-display header">Nalanda</div>
       <HighlightGrid highlights = {data}/>
     </div>
   );
