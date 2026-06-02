@@ -49,37 +49,49 @@ async function rehighlight(){
     .select('content, prefix, suffix')
     .eq('source_url', window.location.href)
 
+    console.log('rehighlight data:', data, 'error:', error)
+
+    if (error || !data) return;
+
     if (data.length == 0){
         return;
     } else {
 
         data.forEach(highlight => {
+            console.log('searching for:', highlight.prefix + highlight.content + highlight.suffix)
 
-            if (document.body.includes((highlight.prefix + highlight.content + highlight.suffix))){
-                const range = document.createRange();
-                range.setStart()
+            if (highlight.content.length==0){return}
 
-                const treeWalker = document.createTreeWalker(
-                    document.querySelector("body"),
-                    NodeFilter.SHOW_TEXT,
-                );
+            const range = document.createRange();
 
-                while (treeWalker.nextNode()) {
-                    const node = treeWalker.currentNode;
-                    node.data = node.data.toUpperCase();
+            const treeWalker = document.createTreeWalker(
+                document.body,
+                NodeFilter.SHOW_TEXT
+            );
+
+            while (treeWalker.nextNode()) {
+                const node = treeWalker.currentNode;
+                const searchStr = (highlight.prefix || '') + highlight.content + (highlight.suffix || '')
+
+                if (node.textContent.includes(searchStr)){
+                    console.log('found node:', node.textContent.slice(0, 50))
+                    const matchIndex = node.textContent.indexOf(searchStr)
+                    const startIndex = matchIndex + (highlight.prefix || '').length
+ 
+                    range.setStart(node, startIndex);
+                    range.setEnd(node, startIndex + highlight.content.length);
+
+                    const mark = document.createElement("mark");
+                    try {
+                        range.surroundContents(mark);
+                    } catch(e) {
+                        console.error('surroundContents failed:', e)
+                    }
+                    
                 }
-
-                const mark = document.createElement("mark");
-                range.surroundContents(mark);
-            }
+            };
         })
-
     }
-
-
-
-
-
 }
 
 
