@@ -6,6 +6,7 @@ const hDB = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 document.addEventListener("mouseup", () => {
     const text = document.getSelection().toString();
+    const cleanText = text.replace(/\u00a0/g, ' ').replace(/\[\d+\]/g, '').trim();
     const checkBtn = document.getElementById("hBtn");
     if (checkBtn){
         checkBtn.remove();
@@ -32,7 +33,7 @@ document.addEventListener("mouseup", () => {
 
     newBtn.addEventListener("click", async (event) => {
         console.log('clicked')
-        const { error } = await hDB.from('highlights').insert({ content: text, source_url: window.location.href, prefix: prefix, suffix: suffix})
+        const { error } = await hDB.from('highlights').insert({ content: cleanText, source_url: window.location.href, prefix: prefix, suffix: suffix})
         if (error) console.error(error)
     });
 
@@ -46,52 +47,27 @@ async function rehighlight(){
 
     const { data, error } = await hDB
     .from('highlights')
-    .select('content, prefix, suffix')
+    .select('content')
     .eq('source_url', window.location.href)
 
-    console.log('rehighlight data:', data, 'error:', error)
+    if (error || !data || data.length == 0) return;
 
-    if (error || !data) return;
+    data.forEach(highlight => {
+        if (!highlight.content){return}
 
-    if (data.length == 0){
-        return;
-    } else {
-
-        data.forEach(highlight => {
-            console.log('searching for:', highlight.prefix + highlight.content + highlight.suffix)
-
-            if (highlight.content.length==0){return}
-
-            const range = document.createRange();
-
-            const treeWalker = document.createTreeWalker(
-                document.body,
-                NodeFilter.SHOW_TEXT
-            );
-
-            while (treeWalker.nextNode()) {
-                const node = treeWalker.currentNode;
-                const searchStr = (highlight.prefix || '') + highlight.content + (highlight.suffix || '')
-
-                if (node.textContent.includes(searchStr)){
-                    console.log('found node:', node.textContent.slice(0, 50))
-                    const matchIndex = node.textContent.indexOf(searchStr)
-                    const startIndex = matchIndex + (highlight.prefix || '').length
- 
-                    range.setStart(node, startIndex);
-                    range.setEnd(node, startIndex + highlight.content.length);
-
-                    const mark = document.createElement("mark");
-                    try {
-                        range.surroundContents(mark);
-                    } catch(e) {
-                        console.error('surroundContents failed:', e)
-                    }
-                    
-                }
-            };
+        highlight.content = highlight.content.replace(/\s+/g, ' ').trim()
+        const escaped = highlight.content.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        const pattern = new RegExp(escaped.replace(/\s+/g, '(\\s|\\[\\d+\\])+'), 'gi')
+        const instance = new Mark(document.body)
+        instance.markRegExp(pattern, {
+            acrossElements: true,
+            noMatch: (term) => {
+                console.log('no match:', JSON.stringify(term.toString().slice(0, 100)))
+            }
         })
-    }
+
+        console.log('body text sample:', document.body.innerText.slice(0, 500))
+    })
 }
 
 
