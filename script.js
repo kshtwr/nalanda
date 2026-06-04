@@ -65,8 +65,6 @@ async function rehighlight(){
                 console.log('no match:', JSON.stringify(term.toString().slice(0, 100)))
             }
         })
-
-        console.log('body text sample:', document.body.innerText.slice(0, 500))
     })
 }
 
