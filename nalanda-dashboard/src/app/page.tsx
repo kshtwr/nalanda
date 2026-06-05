@@ -1,12 +1,9 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/utils/supabase/server";
 import HighlightGrid from '../components/HighlightGrid';
 
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
-const supabase = createClient(supabaseUrl, supabaseKey)
-
 export default async function Home() {
+
+  const supabase =  await createClient()
 
   const { data, error } = await supabase.from('highlights')
   .select('id, content, source_url, created_at')
