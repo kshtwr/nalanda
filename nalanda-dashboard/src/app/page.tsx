@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import HighlightGrid from '../components/HighlightGrid';
+import SignOutButton from '../components/SignOutButton';
 
 export default async function Home() {
 
@@ -21,7 +22,10 @@ export default async function Home() {
   
   return (
     <div>
-      <div className= "font-display header">Nalanda</div>
+      <div className="flex justify-between items-center pr-8 py-4">
+        <div className= "font-display header">Nalanda</div>
+        <SignOutButton></SignOutButton>
+      </div>
       <HighlightGrid highlights = {data}/>
     </div>
   );

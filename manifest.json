@@ -7,11 +7,23 @@
       "default_popup": "hello.html",
       "default_icon": "hello_extensions.png"
     },
+    "permissions": ["identity", "storage"],
+    "oauth2": {
+      "client_id": "890060841181-h1afu7bsstenpmjlcgoe9pogb1edotl9.apps.googleusercontent.com",
+      "scopes": ["openid", "email", "profile"]
+    },
     "content_scripts":[
         {
             "matches":["<all_urls>"],
             "js": ["supabase.js", "mark.js", "script.js"]
         }
-    ]
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "web_accessible_resources": [{
+      "resources": ["supabase.js"],
+      "matches": ["<all_urls>"]
+    }]
 
   }
