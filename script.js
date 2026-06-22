@@ -31,8 +31,12 @@ document.addEventListener("mouseup", () => {
     newBtn.style.left = `${coord.x + coord.width}px`;
     newBtn.style.top = `${coord.y - coord.height - 5}px`;
 
+
     newBtn.addEventListener("click", async (event) => {
         console.log('clicked')
+        const result = await chrome.storage.local.get('session')
+        const session = result.session
+        if (session) await hDB.auth.setSession(session)
         const { error } = await hDB.from('highlights').insert({ content: cleanText, source_url: window.location.href, prefix: prefix, suffix: suffix})
         if (error) console.error(error)
     });
@@ -44,6 +48,8 @@ document.addEventListener("mouseup", () => {
 })
 
 async function rehighlight(){
+    const result = await chrome.storage.local.get('session')
+    if (result.session) await hDB.auth.setSession(result.session)
 
     const { data, error } = await hDB
     .from('highlights')

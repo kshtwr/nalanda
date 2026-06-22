@@ -1,3 +1,3 @@
 document.getElementById('signInBtn').addEventListener('click', () => {
-    chrome.runtime.sendMessage('signIn')
+    chrome.tabs.create({ url: 'http://localhost:3000' })
 })
