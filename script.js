@@ -3,7 +3,7 @@ const SUPABASE_ANON_KEY = 'sb_publishable_YOoDS5GlFfbfJgmRGUIEqQ_bFXpi0o_'
 
 const { createClient } = supabase
 const hDB = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-const DASHBOARD_URL = 'http://localhost:3000'
+const DASHBOARD_URL = 'https://nalanda-highlights.vercel.app'
 
 const link = document.createElement('link')
 link.rel = 'stylesheet'
