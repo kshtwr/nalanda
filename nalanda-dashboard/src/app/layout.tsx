@@ -23,6 +23,9 @@ export default function RootLayout({
       lang="en"
       className={`${garamond.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"/>
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

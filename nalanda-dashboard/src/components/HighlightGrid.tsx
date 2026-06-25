@@ -1,5 +1,6 @@
 "use client"
-import Masonry from 'react-masonry-css'
+import Masonry from 'react-masonry-css';
+
 
 type Highlight = {
     id: number
@@ -10,6 +11,7 @@ type Highlight = {
 
 type HighlightGridProps = {
     highlights : Highlight[]; 
+    onDelete: (id: number) => void
 }
 
 function getHostname(url: string): string {
@@ -21,14 +23,18 @@ function getHostname(url: string): string {
 }
 
 
-
-export default function HighlightGrid({ highlights }:HighlightGridProps) {
+export default function HighlightGrid({ highlights, onDelete }:HighlightGridProps) {   
     const items = highlights.map(function(item) {
-        return <div key={item.id} className="flex-col">
+        const url = new URL(item.source_url)
+        url.searchParams.set('nalanda_id', item.id.toString())
+        return <div key={item.id} id={item.id.toString()} className="flex-col">
             <div className="metadata">{new Date(item.created_at).toLocaleDateString()}</div>
-            {item.content} 
-                <div className = "metadata flex flex-col text-right">
-                    <a href = {item.source_url} target = "_blank">{getHostname(item.source_url)}</a>
+            <div className="py-1">{item.content}</div>
+                <div className = "metadata flex flex-row text-left justify-between pr-2">
+                    <a href = {url.toString()} target = "_blank">{getHostname(item.source_url)}</a>
+                    <button onClick={()=>onDelete(item.id)}>
+                        <i className="bi bi-trash text-gray-400 hover:text-red-500 cursor-pointer"></i>
+                    </button>
                 </div> 
         </div>
       });
