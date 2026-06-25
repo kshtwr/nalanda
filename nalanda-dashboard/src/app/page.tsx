@@ -15,11 +15,6 @@ export default async function Home() {
     return "Error fetching highlights";
   }
   
-  if (!data || data.length === 0) {
-    console.log('No highlights found.');
-    return "No highlights found.";
-  }
-  
-  return <SearchableGrid highlights={data} />
+  return <SearchableGrid highlights={data ?? []} />
 
 }
