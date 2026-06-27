@@ -45,7 +45,7 @@ export default function Search({highlights}:{highlights:any[]}){
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search your bookshelf..."
                     className=" placeholder:text-gray-500 hover:placeholder:text-gray-300 hover:border-gray-500
-                                border-b px-3 py-2 flex-1 mb-4 font-display text-5xl bg-transparent border-gray-300 outline-none"
+                                border-b px-3 py-2 flex-1 mb-4 font-display text-2xl md:text-5xl bg-transparent border-gray-300 outline-none"
                 />
                 <div className="mb-4 ml-4 flex-shrink-0 flex flex-col items-end gap-y-1">
                     <SortButton sortOrder={sortOrder} setSortOrder={setSortOrder}/>
