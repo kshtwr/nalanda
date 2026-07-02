@@ -1,7 +1,38 @@
 <html>
-  <body>
-    <button id="signInBtn">Sign in</button>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <style>
+      .card {
+          background: #F0F0EC;
+          border: 1px solid dimgray;
+          border-radius: 8px;
+          padding: 8px 10px;
+          margin-bottom: 8px;
+          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+          font-size: 13px;
+          color: #171717;
+      }
+      #signInBtn {
+        font-size: 0.875rem;
+        color: #6b7280;
+        border: 1px solid #d1d5db;
+        border-radius: 2px;
+        padding: 2px 12px;
+        cursor: pointer;
+        background: none;
+        display: none;
+      }
+      #signInBtn:hover {
+          color: #1f2937;
+      }
+
+    </style>
+  </head>
+  <body style= "width: 300px">
+    <h1 style="font-family: EB Garamond;">Nalanda</h1>
+    <button id="signInBtn" style="display:none">Sign in</button>
     <script src="supabase.js"></script>
     <script src="popup.js"></script>
+    
   </body>
 </html>
