@@ -9,7 +9,9 @@ export default function SignOut(){
 
     async function signOut(){
         await supabase.auth.signOut({ scope: 'local' });
+        (window as any).chrome?.runtime?.sendMessage(EXTENSION_ID, { type: 'clearSession' });
         window.location.href = '/login'
+        
     }
 
     useEffect(() => {
