@@ -11,7 +11,8 @@
     "content_scripts":[
         {
             "matches":["<all_urls>"],
-            "js": ["supabase.js", "mark.js", "script.js"]
+            "js": ["supabase.js", "mark.js", "script.js"],
+            "exclude_matches":["https://nalanda-highlights.vercel.app/*","https://mynalanda.vercel.app/*","http://localhost:3000/*"]
         }
     ],
     "background": {
