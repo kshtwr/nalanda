@@ -5,12 +5,12 @@
     "manifest_version": 3,
     "action": {
       "default_popup": "hello.html",
-      "default_icon": "NalandaLogo.png"
+      "default_icon": "NalandaLogoFinal.png"
     },
     "icons": {
-      "16": "NalandaLogo.png",
-      "48": "NalandaLogo.png",
-      "128": "NalandaLogo.png"
+      "16": "NalandaLogoFinal.png",
+      "48": "NalandaLogoFinal.png",
+      "128": "NalandaLogoFinal.png"
     },
     "permissions": ["storage","tabs"],
     "content_scripts":[
