@@ -1,11 +1,16 @@
 {
-    "name": "Hello Extensions",
-    "description": "Base Level Extension",
+    "name": "Nalanda: Web Highlighter & Dashboard",
+    "description": "Turn the internet into your personal bookshelf — highlight text across any web page and review everything on a personal dashboard.",
     "version": "1.0",
     "manifest_version": 3,
     "action": {
       "default_popup": "hello.html",
-      "default_icon": "hello_extensions.png"
+      "default_icon": "NalandaLogo.png"
+    },
+    "icons": {
+      "16": "NalandaLogo.png",
+      "48": "NalandaLogo.png",
+      "128": "NalandaLogo.png"
     },
     "permissions": ["storage","tabs"],
     "content_scripts":[
