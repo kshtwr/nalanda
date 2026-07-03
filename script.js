@@ -45,13 +45,16 @@ document.addEventListener("mouseup", () => {
     newBtn.style.left = `${coord.x + coord.width}px`;
     newBtn.style.top = `${coord.top - 30}px`;
     
+    const pageUrl = new URL(window.location.href)
+    pageUrl.searchParams.delete('nalanda_id')
+    const cleanUrl = pageUrl.toString()
 
     newBtn.addEventListener("click", async (event) => {
         console.log('clicked')
         const result = await chrome.storage.local.get('session')
         const session = result.session
         if (session) await hDB.auth.setSession(session)
-        const { data, error } = await hDB.from('highlights').insert({ content: cleanText, source_url: window.location.href, prefix: prefix, suffix: suffix}).select('id').single()
+        const { data, error } = await hDB.from('highlights').insert({ content: cleanText, source_url: cleanUrl, prefix: prefix, suffix: suffix}).select('id').single()
         if (error) { console.error(error)} else {markText(data.id, cleanText);}
         
         selection.removeAllRanges();
@@ -78,6 +81,15 @@ document.addEventListener("keydown", (event) =>{
         document.getElementById("hBtn")?.remove();
     }
 
+}); 
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>{
+    if (message.type == "scrollFlash"){
+        scrollFlash(message.id)
+    } else if (message.type == "signOut"){
+        hDB.auth.signOut()
+        new Mark(document.body).unmark()
+    }
 }); 
 
 function markText(id, content){
@@ -153,6 +165,15 @@ function markText(id, content){
     
 }
 
+function scrollFlash(id){
+    const target = document.querySelector(`.highlight-${id}`)
+    if (!target) return;
+    target?.scrollIntoView({behavior:'smooth', block:'center'})
+    target.style.transition = 'background-color 1s'
+    target.style.backgroundColor = 'orange'
+    setTimeout(() => { target.style.backgroundColor = '' }, 1000)
+}
+
 async function rehighlight(){
     const result = await chrome.storage.local.get('session')
     if (result.session) await hDB.auth.setSession(result.session)
@@ -172,11 +193,7 @@ async function rehighlight(){
         markText(highlight.id, highlight.content);
     })
     const id = new URLSearchParams(window.location.search).get('nalanda_id')
-    const target = document.querySelector(`.highlight-${id}`)
-    target?.scrollIntoView({behavior:'smooth', block:'center'})
-    target.style.transition = 'background-color 1s'
-    target.style.backgroundColor = 'orange'
-    setTimeout(() => { target.style.backgroundColor = '' }, 1000)
+    scrollFlash(id)
 }    
 
 rehighlight()
