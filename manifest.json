@@ -18,7 +18,7 @@
       "service_worker": "background.js"
     },
     "externally_connectable": {
-      "matches": ["https://nalanda-highlights.vercel.app/*","http://localhost:3000/*"]},
+      "matches": ["https://nalanda-highlights.vercel.app/*","https://mynalanda.vercel.app/*","http://localhost:3000/*"]},
     "web_accessible_resources": [{
       "resources": ["supabase.js"],
       "matches": ["<all_urls>"]

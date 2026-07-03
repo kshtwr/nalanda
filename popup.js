@@ -52,7 +52,7 @@ async function popupDisplay(){
 
 document.getElementById('signInBtn').addEventListener('click', () => {
     //chrome.tabs.create({ url: 'https://nalanda-highlights.vercel.app' })
-    chrome.tabs.create({ url: 'http://localhost:3000' })
+    chrome.tabs.create({ url: 'https://mynalanda.vercel.app' })
 })
 
 document.getElementById('signOutBtn').addEventListener('click', async() => {
@@ -63,7 +63,7 @@ document.getElementById('signOutBtn').addEventListener('click', async() => {
 })
 
 document.getElementById('dashboardBtn').addEventListener('click', () => {
-    chrome.tabs.create({ url: 'http://localhost:3000' })
+    chrome.tabs.create({ url: 'https://mynalanda.vercel.app' })
 })
 
 
