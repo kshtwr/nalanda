@@ -50,7 +50,6 @@ document.addEventListener("mouseup", () => {
     const cleanUrl = pageUrl.toString()
 
     newBtn.addEventListener("click", async (event) => {
-        console.log('clicked')
         const result = await chrome.storage.local.get('session')
         const session = result.session
         if (session) await hDB.auth.setSession(session)
@@ -101,9 +100,6 @@ function markText(id, content){
         const instance = new Mark(document.body)
         instance.markRegExp(pattern, {
             acrossElements: true,
-            noMatch: (term) => {
-                console.log('no match:', JSON.stringify(term.toString().slice(0, 100)))
-            },
             className:`highlight-${id}`,
             each:(element)=>{
                 element.addEventListener("mouseenter", (e) => {
@@ -113,7 +109,7 @@ function markText(id, content){
                     const delBtn = document.createElement("button");
 
                     hoverBtn.addEventListener('click',(e)=>{
-                        url = `${DASHBOARD_URL}/?id=${id}`
+                        const url = `${DASHBOARD_URL}/?id=${id}`
                         window.open(url,'_blank');
                     })
 
@@ -154,7 +150,7 @@ function markText(id, content){
                 });
 
                 element.addEventListener("mouseleave", (e) => {
-                    e.target.style.backgroundColor = ""; // Resets to original highlight color
+                    e.target.style.backgroundColor = "";
                     hideTimeout = setTimeout(() => {
                         document.getElementById("hoverDiv")?.remove();
                     }, 300);

@@ -25,7 +25,6 @@ async function popupDisplay(){
     const cleanUrl = pageUrl.toString()
         
     const { data, error } = await hDB.from('highlights').select('id, content, source_url').order('created_at', { ascending: false }).eq('source_url', cleanUrl)
-    console.log(data, error)
     if (error || !data || data.length == 0){
         const card = document.createElement('p')
         card.innerText = "No highlights found on this page."
@@ -51,7 +50,6 @@ async function popupDisplay(){
 }    
 
 document.getElementById('signInBtn').addEventListener('click', () => {
-    //chrome.tabs.create({ url: 'https://nalanda-highlights.vercel.app' })
     chrome.tabs.create({ url: 'https://mynalanda.vercel.app' })
 })
 
