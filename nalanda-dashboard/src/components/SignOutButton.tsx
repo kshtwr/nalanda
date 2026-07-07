@@ -2,7 +2,7 @@
 import { createClient } from "@/utils/supabase/client";
 import {useEffect} from 'react';
 
-const EXTENSION_ID = "bekpiokeecdinophabjeianginppegdf"
+const EXTENSION_ID = "hdlbgaocldooigilaoeaplmhjkgddfal"
 const supabase = createClient();
 
 export default function SignOut(){
