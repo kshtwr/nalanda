@@ -1,24 +1,30 @@
 {
-    "name": "Hello Extensions",
-    "description": "Base Level Extension",
+    "name": "Nalanda: Web Highlighter & Dashboard",
+    "description": "Turn the internet into your personal bookshelf — highlight text across any web page and review everything on a personal dashboard.",
     "version": "1.0",
     "manifest_version": 3,
     "action": {
       "default_popup": "hello.html",
-      "default_icon": "hello_extensions.png"
+      "default_icon": "NalandaLogoFinal.png"
+    },
+    "icons": {
+      "16": "NalandaLogoFinal.png",
+      "48": "NalandaLogoFinal.png",
+      "128": "NalandaLogoFinal.png"
     },
     "permissions": ["storage","tabs"],
     "content_scripts":[
         {
             "matches":["<all_urls>"],
-            "js": ["supabase.js", "mark.js", "script.js"]
+            "js": ["supabase.js", "mark.js", "script.js"],
+            "exclude_matches":["https://nalanda-highlights.vercel.app/*","https://mynalanda.vercel.app/*","http://localhost:3000/*"]
         }
     ],
     "background": {
       "service_worker": "background.js"
     },
     "externally_connectable": {
-      "matches": ["https://nalanda-highlights.vercel.app/*","http://localhost:3000/*"]},
+      "matches": ["https://nalanda-highlights.vercel.app/*","https://mynalanda.vercel.app/*","http://localhost:3000/*"]},
     "web_accessible_resources": [{
       "resources": ["supabase.js"],
       "matches": ["<all_urls>"]

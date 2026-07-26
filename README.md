@@ -2,6 +2,8 @@
 
 A personal knowledge capture tool: highlight text on any webpage, save it to your account, and revisit your highlights in a dashboard — with the original highlight automatically restored on the page when you return.
 
+**[Install on Chrome Web Store](https://chromewebstore.google.com/detail/nalanda-web-highlighter-d/hdlbgaocldooigilaoeaplmhjkgddfal)** · **[View Dashboard](https://mynalanda.vercel.app/)** · **[Demo Video](https://www.youtube.com/watch?v=dzeM2ZCz9AU)**
+
 ## What it does
 
 - **Capture** — select text on any webpage, click the button that appears, and the highlight is saved with its source URL and surrounding context
@@ -33,4 +35,8 @@ A personal knowledge capture tool: highlight text on any webpage, save it to you
 
 ## Status
 
-Actively in development. Core capture and rehighlighting loop, auth, and dashboard are functional. Planned next: search/filter/sort on the dashboard, in-page navigation from highlights back to the dashboard, and deployment to the Chrome Web Store and Vercel.
+Live. Extension is published on the Chrome Web Store and the dashboard is deployed on Vercel.
+
+**Version 2 planned:**
+- A RAG-based AI assistant that lets you query your personally curated knowledge base (second brain)
+- Different highlight colors for a folder-based categorization system
