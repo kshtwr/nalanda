@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import HighlightGrid from '../components/HighlightGrid';
 import SignOutButton from '../components/SignOutButton';
 import SortButton from '../components/SortButton';
+import ChatBar from '../components/ChatBar';
 import {createClient} from '@/utils/supabase/client';
 
 const supabase = createClient();
@@ -58,6 +59,7 @@ export default function Search({highlights}:{highlights:any[]}){
                 ? <p className="font-sans text-gray-500 w-full text-center mt-15">No highlights (yet)</p>
                 : <HighlightGrid onDelete={handleDelete} highlights={sorted} />
             }
+            <ChatBar></ChatBar>
         </div>
     )
 }

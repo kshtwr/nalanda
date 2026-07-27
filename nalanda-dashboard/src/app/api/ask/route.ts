@@ -4,7 +4,9 @@ import { streamText, toUIMessageStream, createUIMessageStreamResponse, embed } f
 
 export async function POST(req: Request) {
     const supabase = await createClient()
-    const { question } = await req.json()
+    const { messages: incomingMessages } = await req.json()
+    const question = incomingMessages[incomingMessages.length - 1].parts.find((p: any) => p.type === 'text')?.text
+
 
     // 1. Embed the question
     const { embedding: query_embedding } = await embed({
