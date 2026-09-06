@@ -2,7 +2,7 @@
 
 A personal knowledge capture tool: highlight text on any webpage, save it to your account, and revisit your highlights in a dashboard — with the original highlight automatically restored on the page when you return.
 
-**[Install on Chrome Web Store](https://chromewebstore.google.com/detail/nalanda-web-highlighter-d/hdlbgaocldooigilaoeaplmhjkgddfal)** · **[View Dashboard](https://mynalanda.vercel.app/)** · **[Demo Video](https://www.youtube.com/watch?v=dzeM2ZCz9AU)**
+**[Install on Chrome Web Store](https://chromewebstore.google.com/detail/nalanda-web-highlighter-d/hdlbgaocldooigilaoeaplmhjkgddfal)** · **[View Dashboard](https://mynalanda.vercel.app/)** · **[Demo Video](https://www.youtube.com/watch?v=0pvSvrw-lXs)**
 
 ## What it does
 

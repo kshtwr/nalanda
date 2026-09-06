@@ -34,7 +34,7 @@ export default function OnboardingModal() {
                 <div className="aspect-video w-full rounded-xl overflow-hidden">
                     <iframe
                         className="w-full h-full"
-                        src="https://www.youtube.com/embed/dzeM2ZCz9AU?autoplay=1"
+                        src="https://www.youtube.com/embed/0pvSvrw-lXs?autoplay=1"
                         allow="autoplay; encrypted-media"
                         allowFullScreen
                     />
