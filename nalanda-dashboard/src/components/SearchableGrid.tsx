@@ -4,6 +4,7 @@ import HighlightGrid from '../components/HighlightGrid';
 import SignOutButton from '../components/SignOutButton';
 import SortButton from '../components/SortButton';
 import ChatBar from '../components/ChatBar';
+import OnboardingModal from '../components/OnboardingModal';
 import {createClient} from '@/utils/supabase/client';
 
 const supabase = createClient();
@@ -60,6 +61,7 @@ export default function Search({highlights}:{highlights:any[]}){
                 : <HighlightGrid onDelete={handleDelete} highlights={sorted} />
             }
             <ChatBar></ChatBar>
+            <OnboardingModal />
         </div>
     )
 }
